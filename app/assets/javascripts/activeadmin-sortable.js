@@ -12,7 +12,13 @@
           url: url,
           type: 'post',
           data: { position: ui.item.index() + 1 },
-          success: function() { window.location.reload() }
+          success: function() {
+            if (typeof Turbolinks === 'undefined') {
+              window.location.reload();
+            } else {
+              Turbolinks.visit(window.location.pathname + window.location.search);
+            }
+          }
         });
       }
     });
